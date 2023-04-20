@@ -20,69 +20,64 @@ namespace adonet_db_videogame
 
                 Console.WriteLine(Environment.NewLine);
 
-                try
+                
+                switch (opzione.Key)
                 {
-                    switch (opzione.Key)
-                    {
-                        case ConsoleKey.D1:
-                            Console.WriteLine("Nome:");
-                            var name = Console.ReadLine();
+                    case ConsoleKey.D1:
+                        Console.WriteLine("Nome:");
+                        var name = Console.ReadLine();
 
-                            Console.WriteLine("Descrizione:");
-                            var overview = Console.ReadLine();
+                        Console.WriteLine("Descrizione:");
+                        var overview = Console.ReadLine();
 
-                            Console.WriteLine("Data di rilascio (dd/mm/yyyy):");
-                            DateTime releaseDate; 
-                            while(!DateTime.TryParse(Console.ReadLine(), out releaseDate))
-                                Console.WriteLine("Inserisci formato Valido! (dd/mm/yyyy)");
+                        Console.WriteLine("Data di rilascio (dd/mm/yyyy):");
+                        DateTime releaseDate; 
+                        while(!DateTime.TryParse(Console.ReadLine(), out releaseDate))
+                            Console.WriteLine("Inserisci formato Valido! (dd/mm/yyyy)");
 
-                            Console.WriteLine("Software house id:");
-                            var softwareHouseId = Convert.ToInt64(Console.ReadLine());
+                        Console.WriteLine("Software house id:");
+                        var softwareHouseId = Convert.ToInt64(Console.ReadLine());
 
-                            var game = new Videogame(name, overview, releaseDate, softwareHouseId);
+                        var game = new Videogame(name, overview, releaseDate, softwareHouseId);
 
-                            VideogameManager.AddGame(game);
+                        VideogameManager.AddGame(game);
 
                             
-                            break;
-                        case ConsoleKey.D2:
-                            Console.WriteLine("Inserisci id gioco");
+                        break;
+                    case ConsoleKey.D2:
+                        Console.WriteLine("Inserisci id gioco");
 
-                            var id = Convert.ToInt64(Console.ReadLine());
+                        var id = Convert.ToInt64(Console.ReadLine());
 
-                            VideogameManager.SearchById(id).ToString();
+                        Console.WriteLine(VideogameManager.SearchById(id).ToString());
 
-                            break;
-                        case ConsoleKey.D3:
-                            Console.WriteLine("Inserisci nome gioco");
+                        break;
+                    case ConsoleKey.D3:
+                        Console.WriteLine("Inserisci nome gioco");
 
-                            var Name = Console.ReadLine();
+                        var Name = Console.ReadLine();
 
-                            VideogameManager.ListToString(VideogameManager.SearchByName(Name));
+                        Console.WriteLine(VideogameManager.ListToString(VideogameManager.SearchByName(Name)));
 
-                            break;
-                        case ConsoleKey.D4:
-                            Console.WriteLine("Inserisci id gioco da eliminare");
+                        break;
+                    case ConsoleKey.D4:
+                        Console.WriteLine("Inserisci id gioco da eliminare");
 
-                            var _id = Convert.ToInt64(Console.ReadLine());
+                        var _id = Convert.ToInt64(Console.ReadLine());
 
-                            VideogameManager.DeleteGame(_id);
+                        VideogameManager.DeleteGame(_id);
 
-                            break;
-                        case ConsoleKey.D5:
-                            Environment.Exit(0);
+                        break;
+                    case ConsoleKey.D5:
+                        Environment.Exit(0);
 
-                            break;
-                        default:
-                            Console.WriteLine("Premi un numero da 1 a 5!");
+                        break;
+                    default:
+                        Console.WriteLine("Premi un numero da 1 a 5!");
 
-                            break;
-                    }
-
-                } catch (Exception ex) 
-                {
-                    Console.WriteLine($"Error: {ex.Message}");
+                        break;
                 }
+
             }
 
         }
